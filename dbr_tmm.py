@@ -117,7 +117,7 @@ def plot_dbr_wavelength_spectrum(wavelengths, R, T, lambda0):
     ax.axvline(lambda0 * 1e9, color="black", ls=":", label=r"$\lambda_0$ = {:.0f} nm".format(lambda0*1e9)) #Adding a vertical line at the target wavelength
     ax.set_xlabel("Wavelength (nm)", fontsize=12) #Setting the x-axis label
     ax.set_ylabel("Reflectance / Transmittance", fontsize=12) #Setting the y-axis label
-    ax.set_title("DBR reflection and transmittance wavelength dependence", fontsize=14) #Setting the title of the plot
+    ax.set_title("DBR reflectance and transmittance wavelength dependence", fontsize=14) #Setting the title of the plot
     ax.legend(loc="upper right") #Adding plot legend
     plt.show() #Displaying the plot
 
@@ -142,7 +142,7 @@ def plot_dbr_frequency_spectrum(wavelengths, R, T, lambda0):
     ax.axvline(f0 / 1e12, color="black", ls=":", label=r"$\nu_0$ = {:.1f} THz".format(f0/1e12)) #Adding a vertical line at the central frequency
     ax.set_xlabel("Frequency (THz)", fontsize=12) #Setting the x-axis label
     ax.set_ylabel("Reflectance / Transmittance", fontsize=12) #Setting the y-axis label
-    ax.set_title("DBR reflection and transmittance frequency dependence", fontsize=14) #Setting the title of the plot
+    ax.set_title("DBR reflectance and transmittance frequency dependence", fontsize=14) #Setting the title of the plot
     ax.legend(loc="upper right") #Adding plot legend
     plt.show() #Displaying the plot
 
@@ -150,11 +150,12 @@ def plot_reflectance_and_N_pairs(nh, nl, th, tl, lam, N, theta_i, n_i, n_s, pol)
     fig, ax = plt.subplots(figsize=(8, 5)) #Plotting the reflectance and DBR pair dependence in a single figure
 
     N_val = [N//5, N//4, N//2, N] #Creating an array of number of pairs
+    N_val = np.unique(N_val) #Removing duplicates from the array of number of pairs
     colors = ['blue', 'orange', 'green', 'red'] #Creating an array of colors
 
-    for n in N_val: #Looping through the number of pairs
+    for i, n in enumerate(N_val): #Looping through the number of pairs
         wavelengths, R, T = dbr_matrix(nh, nl, th, tl, lam, n, theta_i, n_i, n_s, pol) #Getting the reflectance spectra for the pair
-        ax.plot(wavelengths * 1e9, R, label=f"N = {n}", color=colors[N_val.index(n)]) #Plotting the reflectance spectra for the pair
+        ax.plot(wavelengths * 1e9, R, label=f"N = {n}", color=colors[i]) #Plotting the reflectance spectra for the pair
 
     ax.axvline(lam0 * 1e9, color="black", ls=":", label=r"$\lambda_0$") #Adding a vertical line at the target wavelength
     ax.set_xlabel("Wavelength (nm)", fontsize=12) #Setting the x-axis label
