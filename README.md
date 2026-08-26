@@ -20,7 +20,7 @@ Simulation has been validated against analogous FDTD simulation in Tidy3D.
 
 ### Frequency-domain spectrum (symmetric stopband)
 ![Frequency spectrum](examples/frequency_spectrum.png)
-1550 nm, 15 layers of alternating SiO2 (n = 1.5) and TiO2 (n = 2.5)
+193.5 THz (1550 nm), 15 layers of alternating SiO2 (n = 1.5) and TiO2 (n = 2.5)
 
 ### Reflectance vs. number of layer pairs
 ![Reflectance vs N](examples/reflectance_vs_N.png)
